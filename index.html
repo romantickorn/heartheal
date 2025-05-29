@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>คำคมฮีลใจประจำวัน</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fceee9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    .quote-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    .quote {
+      font-size: 1.5rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-box">
+    <div class="quote" id="quote">กำลังโหลดคำคม...</div>
+  </div>
+
+  <script>
+    const quotes = [
+      "อย่ากลัวที่จะเริ่มใหม่ มันคือโอกาสอีกครั้งที่จะทำให้ดีกว่าเดิม",
+      "ทุกวันไม่ต้องดีเลิศ แต่มีบางอย่างให้ยิ้มได้ก็พอ",
+      "เหนื่อยก็พัก แต่ห้ามถอย",
+      "แสงแดดจะกลับมาเสมอ หลังพายุผ่านไป",
+      "ใจเย็นไว้ เดี๋ยวมันก็ดีขึ้น"
+    ];
+
+    function getQuoteOfTheDay() {
+      const today = new Date();
+      const index = today.getDate() % quotes.length;
+      return quotes[index];
+    }
+
+    document.getElementById("quote").innerText = getQuoteOfTheDay();
+  </script>
+</body>
+</html>
