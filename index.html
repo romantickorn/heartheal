@@ -7,6 +7,7 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -14,6 +15,7 @@
       padding: 20px;
       text-align: center;
     }
+
     .quote {
       background: white;
       padding: 30px;
@@ -21,11 +23,35 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       font-size: 1.5em;
       max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .copy-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.2s;
+    }
+
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .copied {
+      margin-top: 10px;
+      color: green;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
   <div class="quote" id="quoteDisplay"></div>
+  <button class="copy-btn" onclick="copyQuote()">คัดลอกคำคม</button>
+  <div class="copied" id="copiedMessage" style="display:none;">📋 คัดลอกแล้ว!</div>
 
   <script>
     const quotes = [
@@ -135,7 +161,19 @@
     ];
 
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById('quoteDisplay').textContent = `"${randomQuote}"`;
+    const quoteDisplay = document.getElementById('quoteDisplay');
+    const copiedMessage = document.getElementById('copiedMessage');
+
+    quoteDisplay.textContent = `"${randomQuote}"`;
+
+    function copyQuote() {
+      navigator.clipboard.writeText(randomQuote).then(() => {
+        copiedMessage.style.display = 'block';
+        setTimeout(() => {
+          copiedMessage.style.display = 'none';
+        }, 2000);
+      });
+    }
   </script>
 </body>
 </html>
